@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: candyland-deployment
+  namespace: candyland
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: candyland
+  template:
+    metadata:
+      labels:
+        app: candyland
+    spec:
+      containers:
+      - name: candyland
+        image: docker.javapl.us/candyland-roller:1.0.0
+        ports:
+        - containerPort: 80
