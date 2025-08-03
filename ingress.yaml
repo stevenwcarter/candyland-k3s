@@ -12,9 +12,20 @@ spec:
   tls:
   - hosts:
     - candyland.k3s.javapl.us
+    - candyland.carterfam.us
     secretName: candyland-tls  # cert-manager will create this secret
   rules:
   - host: candyland.k3s.javapl.us
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: candyland-service
+            port:
+              number: 80
+  - host: candyland.carterfam.us
     http:
       paths:
       - path: /
